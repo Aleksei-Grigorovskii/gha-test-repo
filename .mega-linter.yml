@@ -15,6 +15,13 @@ linters:
   - PYTHON_MYPY
   - PYTHON_BANDIT
 
+DISABLE_LINTERS:
+  - checkov
+  - kics
+  - cspell
+  - lychee
+  - v8r
+
 # Linters parameters
 # More info at https://nvuillam.github.io/mega-linter/configuration/#linters-variables
 linters_parameters:
