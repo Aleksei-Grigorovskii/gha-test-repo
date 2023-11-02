@@ -1,0 +1,56 @@
+# .mega-linter.yml
+---
+# Define Mega-Linter flavor to use. If not set, natively installed Mega-Linter will be used
+# More info at https://nvuillam.github.io/mega-linter/flavors/
+flavor: all
+
+# List of activated linters
+# - If a linter is not in the list, it means it is not activated
+# - If the list is empty or key is not in the configuration file, all possible linters are activated
+linters:
+  - PYTHON_PYLINT
+  - PYTHON_BLACK
+  - PYTHON_ISORT
+  - PYTHON_FLAKE8
+  - PYTHON_MYPY
+  - PYTHON_BANDIT
+
+# Linters parameters
+# More info at https://nvuillam.github.io/mega-linter/configuration/#linters-variables
+linters_parameters:
+  PYTHON_BLACK:
+    args: --line-length 120
+  PYTHON_ISORT:
+    args: --profile black
+  PYTHON_FLAKE8:
+    args: --max-line-length 120 --ignore E203,W503
+  PYTHON_MYPY:
+    args: --ignore-missing-imports
+  PYTHON_BANDIT:
+    args: -r
+
+# Linters that will return fixes in case of error
+# Default: []
+fixers:
+  - PYTHON_BLACK
+  - PYTHON_ISORT
+
+# Directories to exclude from linting
+# Default: []
+exclude:
+  - venv/
+  - .venv/
+  - build/
+  - dist/
+
+# Files to include in linting
+# Glob expressions are allowed
+# Default: **/* for all linters
+include:
+  - "*.py"
+
+# Format of the generated report
+# Default: markdown
+report_formats:
+  - markdown
+
