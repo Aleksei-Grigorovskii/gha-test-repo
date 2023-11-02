@@ -16,11 +16,11 @@ linters:
   - PYTHON_BANDIT
 
 DISABLE_LINTERS:
-  - checkov
-  - kics
-  - cspell
-  - lychee
-  - v8r
+  - REPOSITORY_CHECKOV
+  - REPOSITORY_KICS
+  - SPELL_CSPELL
+  - SPELL_LYCHEE
+  - YAML_V8R
 
 # Linters parameters
 # More info at https://nvuillam.github.io/mega-linter/configuration/#linters-variables
