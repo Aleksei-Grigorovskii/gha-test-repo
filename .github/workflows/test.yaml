@@ -15,6 +15,14 @@ on:
 env:  # Comment env block if you don't want to apply fixes
   APPLY_FIXES: all  # When active, APPLY_FIXES must also be defined as environment variable (in github/workflows/mega-linter.yml or other CI tool)
 jobs:
+  cache:
+    name: cache
+    runs-on: ubuntu-latest
+    steps:
+    - name: Docker pull
+      run: docker pull oxsecurity/megalinter:v7.5.0
+      shell: sh
+
   megalinter:
     name: MegaLinter
     runs-on: ubuntu-latest
@@ -25,10 +33,6 @@ jobs:
     #  issues: write
     #  pull-requests: write
     steps:
-      - name: Cache Docker images.
-        uses: ScribeMD/docker-cache@0.3.6
-        with:
-          key: docker-oxsecurity-megalinter
       #  Git Checkout
       - name: Checkout Code
         uses: actions/checkout@v4
