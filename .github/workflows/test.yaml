@@ -19,6 +19,10 @@ jobs:
     name: cache
     runs-on: ubuntu-latest
     steps:
+    - name: Cache Docker images.
+      uses: ScribeMD/docker-cache@0.3.6
+      with:
+        key: docker-megalinter
     - name: Docker pull
       run: docker pull oxsecurity/megalinter:v7.5.0
       shell: sh
@@ -26,6 +30,7 @@ jobs:
   megalinter:
     name: MegaLinter
     runs-on: ubuntu-latest
+    needs: cache
     # permissions:
     #  # Give the default GITHUB_TOKEN write permission to commit and push, comment issues & post new PR
     #  # Remove the ones you do not need
