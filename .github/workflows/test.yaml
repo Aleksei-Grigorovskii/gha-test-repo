@@ -4,10 +4,9 @@ on:
   workflow_dispatch:
 
 permissions:
-  issues: write   # нужно для создания issue шага approval
+  issues: write
 
 jobs:
-  # 1) Шаг ручного approval
   approval:
     name: Await Manual Approval
     runs-on: ubuntu-latest
@@ -16,19 +15,19 @@ jobs:
         uses: trstringer/manual-approval@v1
         with:
           secret: ${{ secrets.GITHUB_TOKEN }}
-          approvers: Aleksei-Grigorovskii
+          approvers: "Aleksei-Grigorovskii"
           minimum-approvals: 1
           issue-title: "Approve Test Job"
           issue-body: |
             Этот тестовый workflow приостановлен до вашего подтверждения.
-            Оставьте комментарий “approve” на созданном issue для продолжения,
-            или “deny” для отмены.
+            Оставьте комментарий "approve" на созданном issue для продолжения,
+            или "deny" для отмены.
 
-  # 2) Тестовая джоба, выполняется только после approval
   test:
     name: Run Test Command
     needs: approval
     runs-on: ubuntu-latest
     steps:
       - name: Print Test Message
-        run: echo "Тест пройден: approval получен ✅"
+        run: echo "Тест пройден - approval получен ✅"
+        
